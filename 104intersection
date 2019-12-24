@@ -79,15 +79,13 @@ def cylinder(opt, xp, yp, zp, xv, yv, zv, p):
 
 
 def cone(opt, xp, yp, zp, xv, yv, zv, p):
-    if p < 380:
-        exit(84)
     radian = math.radians(p)
     a = math.pow(xv, 2) + math.pow(yv, 2) - math.pow(zv, 2) * math.pow(math.tan(radian), 2)
     b = 2 * (xp * xv + yp * yv - zp * zv * math.pow(math.tan(radian), 2))
     c = math.pow(xp, 2) + math.pow(yp, 2) - math.pow(math.tan(radian), 2)
     if a == 0:
         exit(84)
-    print(f"Sphere of radius {p}")
+    print(f"Cone with a {p} degree angle")
     print(f"Line passing through the point ({xp}, {yp}, {zp}) and parallel to the vector ({xv}, {yv}, {zv})")
     delta = math.pow(b, 2) - (4 * a * c)
     if delta < 0:
@@ -114,24 +112,26 @@ def cone(opt, xp, yp, zp, xv, yv, zv, p):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2 and sys.argv[1][0] == '-' and sys.argv[1][1] == 'h':
-        usage()
-    if len(sys.argv) != 9:
-        exit(84)
-    opt = float(sys.argv[1])
-    xp = float(sys.argv[2])
-    yp = float(sys.argv[3])
-    zp = float(sys.argv[4])
-    xv = float(sys.argv[5])
-    yv = float(sys.argv[6])
-    zv = float(sys.argv[7])
-    p = float(sys.argv[8])
-    if opt != 1 and opt != 2 and opt != 3:
-        exit(84)
-    if opt == 1:
-        sphere(opt, xp, yp, zp, xv, yv, zv, p)
-    if opt == 2:
-        cylinder(opt, xp, yp, zp, xv, yv, zv, p)
-    if opt == 3:
-       cone(opt, xp, yp, zp, xv, yv, zv, p)
-
+    try:
+        if len(sys.argv) == 2 and sys.argv[1][0] == '-' and sys.argv[1][1] == 'h':
+            usage()
+        if len(sys.argv) != 9:
+            exit(84)
+        opt = int(sys.argv[1])
+        xp = int(sys.argv[2])
+        yp = int(sys.argv[3])
+        zp = int(sys.argv[4])
+        xv = int(sys.argv[5])
+        yv = int(sys.argv[6])
+        zv = int(sys.argv[7])
+        p = int(sys.argv[8])
+        if opt != 1 and opt != 2 and opt != 3:
+            exit(84)
+        if opt == 1:
+            sphere(opt, xp, yp, zp, xv, yv, zv, p)
+        if opt == 2:
+            cylinder(opt, xp, yp, zp, xv, yv, zv, p)
+        if opt == 3:
+            cone(opt, xp, yp, zp, xv, yv, zv, p)
+    except:
+        exit(84);
