@@ -81,7 +81,7 @@ def cylinder(opt, xp, yp, zp, xv, yv, zv, p):
 def cone(opt, xp, yp, zp, xv, yv, zv, p):
     radian = math.radians(p)
     a = math.pow(xv, 2) + math.pow(yv, 2) - math.pow(zv, 2) * math.pow(math.tan(radian), 2)
-    b = 2 * (xp * xv + yp * yv - zp * zv * math.pow(math.tan(radian), 2))
+    b = (2 * xp * xv) + (2 * yp * yv) - (2 * zp * zv * math.pow(math.tan(radian), 2))
     c = math.pow(xp, 2) + math.pow(yp, 2) - math.pow(math.tan(radian), 2)
     if a == 0:
         exit(84)
