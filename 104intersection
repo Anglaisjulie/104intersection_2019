@@ -18,8 +18,6 @@ def sphere(opt, xp, yp, zp, xv, yv, zv, p):
     a = math.pow(xv, 2) + math.pow(yv, 2) + math.pow(zv, 2)
     b = 2 * xp * xv + 2 * yp * yv + 2 * zp * zv
     c = math.pow(xp, 2) + math.pow(yp, 2) + math.pow(zp, 2) - math.pow(p, 2)
-    if a == 0:
-        exit(84)
     print(f"Sphere of radius {p}")
     print(f"Line passing through the point ({xp}, {yp}, {zp}) and parallel to the vector ({xv}, {yv}, {zv})")
     delta = math.pow(b, 2) - (4 * a * c)
@@ -50,20 +48,21 @@ def cylinder(opt, xp, yp, zp, xv, yv, zv, p):
     a = math.pow(xv, 2) + math.pow(yv, 2)
     b = (2 * xp * xv) + (2 * yp * yv)
     c = math.pow(xp, 2) + math.pow(yp, 2) - math.pow(p, 2)
-    if a == 0:
-        exit(84)
     print(f"Cylinder of radius {p}")
     print(f"Line passing through the point ({xp}, {yp}, {zp}) and parallel to the vector ({xv}, {yv}, {zv})")
     delta = math.pow(b, 2) - (4 * a * c)
     if delta < 0:
         print("No intersection point.")
     elif delta == 0:
-        print("1 intersection point:")
-        x1 = -b / (2 * a)
-        x = xv * x1 + xp
-        y = yv * x1 + yp
-        z = zv * x1 + zp
-        print(f"({x:.3f}, {y:.3f}, {z:.3f})")
+        if a == 0 or b == 0 or c == 0:
+            print("There is an infinite number of intersection points.")
+        else:
+            print("1 intersection point:")
+            x1 = -b / (2 * a)
+            x = xv * x1 + xp
+            y = yv * x1 + yp
+            z = zv * x1 + zp
+            print(f"({x:.3f}, {y:.3f}, {z:.3f})")
     elif delta > 0:
         print("2 intersection points:")
         x1 = (-b + math.sqrt(delta)) / (2 * a)
