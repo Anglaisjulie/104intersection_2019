@@ -124,10 +124,6 @@ if __name__ == "__main__":
         yv = int(sys.argv[6])
         zv = int(sys.argv[7])
         p = int(sys.argv[8])
-        if p > 360 or p < 0 and opt == 3:
-            exit(84);
-        if (p > (2 * math.pi) or p < 0) and (opt == 1 or opt == 2):
-            exit(84);
         if opt != 1 and opt != 2 and opt != 3:
             exit(84)
         if opt == 1:
